@@ -47,7 +47,6 @@ public final class QueryUtils {
         // Create an empty ArrayList that we can start adding earthquakes to
         ArrayList<Earthquake> earthquakes = new ArrayList<>();
 
-
         try {
             JSONObject baseJsonResponse=new JSONObject(SAMPLE_JSON_RESPONSE);
             JSONArray baseArray=baseJsonResponse.getJSONArray("features");
@@ -55,19 +54,17 @@ public final class QueryUtils {
             {
                 JSONObject newObject=baseArray.getJSONObject(i);
                 JSONObject properties=newObject.getJSONObject("properties");
-                String mag=properties.getString("magnitude");
+                String mag=properties.getString("mag");
                 String loc=properties.getString("place");
                 long time=properties.getLong("time");
 
                 Earthquake earthquake=new Earthquake(mag,loc,time);
                 earthquakes.add(earthquake);
 
-
             }
 
             // TODO: Parse the response given by the SAMPLE_JSON_RESPONSE string and
             // build up a list of Earthquake objects with the corresponding data.
-
         } catch (JSONException e) {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
